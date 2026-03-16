@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Enter Site Title</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #d6cf8a;
+      font-family: Georgia, serif;
+      color: #333;
+    }
+
+    /* ── PAGE WRAPPER ── */
+    .page-wrapper {
+      max-width: 760px;
+      margin: 20px auto;
+      background-color: #d6cf8a;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background-color: #c8d44e;
+      padding: 30px 40px 30px 0;
+      text-align: right;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid #b8c440;
+    }
+
+    /* Decorative diagonal stripe overlays */
+    header::before,
+    header::after {
+      content: '';
+      position: absolute;
+      top: -40px;
+      width: 300px;
+      height: 220px;
+      background: rgba(255,255,255,0.08);
+      transform: rotate(-15deg);
+      pointer-events: none;
+    }
+    header::before { left: 80px; }
+    header::after  { left: 260px; }
+
+    header h1 {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #3a3a1a;
+      position: relative;
+      z-index: 1;
+    }
+
+    header p.slogan {
+      font-size: 0.9rem;
+      color: #5a6a10;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── NAV BAR ── */
+    nav {
+      background-color: #f5f2e0;
+      border-top: 1px solid #ccc;
+      border-bottom: 1px solid #ccc;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      padding: 0 10px;
+    }
+
+    nav ul li a {
+      display: block;
+      padding: 12px 22px;
+      text-decoration: none;
+      color: #444;
+      font-family: Arial, sans-serif;
+      font-size: 0.88rem;
+    }
+
+    nav ul li a:hover {
+      background-color: #e0dc98;
+    }
+
+    /* ── CONTENT AREA ── */
+    .content-area {
+      display: flex;
+      gap: 0;
+      background-color: #f5f2e0;
+      border: 1px solid #ccc;
+      border-top: none;
+      min-height: 480px;
+    }
+
+    /* ── SIDEBAR ── */
+    aside {
+      width: 200px;
+      min-width: 200px;
+      background-color: #f0edd8;
+      border-right: 1px solid #ddd;
+      padding-bottom: 20px;
+    }
+
+    .sidebar-section-title {
+      background-color: #b8c840;
+      color: #2e3010;
+      font-family: Arial, sans-serif;
+      font-size: 1rem;
+      font-weight: bold;
+      padding: 8px 10px 8px 28px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .sidebar-section-title::before {
+      content: '✦';
+      font-size: 0.7rem;
+      margin-right: 2px;
+    }
+
+    .menu-list {
+      list-style: none;
+      padding: 6px 0;
+    }
+
+    .menu-list li a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 10px 5px 14px;
+      text-decoration: none;
+      color: #336699;
+      font-family: Arial, sans-serif;
+      font-size: 0.82rem;
+    }
+
+    .menu-list li a::before {
+      content: '⊞';
+      font-size: 0.75rem;
+      color: #888;
+    }
+
+    .menu-list li a:hover {
+      text-decoration: underline;
+    }
+
+    .block-content {
+      padding: 10px 14px;
+      font-family: Arial, sans-serif;
+      font-size: 0.8rem;
+      color: #555;
+      line-height: 1.5;
+    }
+
+    .block-content p.enter-block {
+      color: #888;
+      margin-bottom: 10px;
+    }
+
+    /* ── MAIN CONTENT ── */
+    main {
+      flex: 1;
+      padding: 20px 24px;
+      background-color: #f8f6e8;
+      /* subtle vertical line texture */
+      background-image: repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 18px,
+        rgba(0,0,0,0.03) 18px,
+        rgba(0,0,0,0.03) 19px
+      );
+    }
+
+    main h2 {
+      font-family: Georgia, serif;
+      font-size: 1.5rem;
+      font-weight: normal;
+      color: #2a2a0a;
+      margin-bottom: 12px;
+    }
+
+    main p.gallery-text {
+      font-family: Arial, sans-serif;
+      font-size: 0.83rem;
+      color: #444;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    /* Two-column section */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .two-col h3 {
+      font-family: Georgia, serif;
+      font-size: 1.2rem;
+      font-weight: normal;
+      color: #2a2a0a;
+      margin-bottom: 10px;
+    }
+
+    .two-col p {
+      font-family: Arial, sans-serif;
+      font-size: 0.8rem;
+      color: #444;
+      line-height: 1.6;
+      margin-bottom: 14px;
+    }
+
+    .btn-read-more {
+      display: inline-block;
+      padding: 7px 16px;
+      background-color: #b8c840;
+      color: #2e3010;
+      font-family: Arial, sans-serif;
+      font-size: 0.82rem;
+      font-weight: bold;
+      text-decoration: none;
+      border: 1px solid #9aaa20;
+      cursor: pointer;
+    }
+
+    .btn-read-more:hover {
+      background-color: #a8b830;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background-color: #c8d44e;
+      text-align: center;
+      padding: 10px;
+      font-family: Arial, sans-serif;
+      font-size: 0.82rem;
+      color: #3a3a1a;
+      border: 1px solid #b8c440;
+      border-top: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page-wrapper">
+
+    <!-- HEADER -->
+    <header>
+      <h1>Enter Site Title</h1>
+      <p class="slogan">Enter Site Slogan</p>
+    </header>
+
+    <!-- NAV -->
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">New Page</a></li>
+        <li><a href="#">New Page 2</a></li>
+        <li><a href="#">New Page 3</a></li>
+        <li><a href="#">New Page 4</a></li>
+        <li><a href="#">New Page 5</a></li>
+      </ul>
+    </nav>
+
+    <!-- CONTENT AREA -->
+    <div class="content-area">
+
+      <!-- SIDEBAR -->
+      <aside>
+        <div class="sidebar-section-title">Main Menu</div>
+        <ul class="menu-list">
+          <li><a href="#">Menu Item 1</a></li>
+          <li><a href="#">Menu Item 2</a></li>
+          <li><a href="#">Menu Item 3</a></li>
+          <li><a href="#">Menu Item 4</a></li>
+          <li><a href="#">Menu Item 5</a></li>
+          <li><a href="#">Menu Item 6</a></li>
+          <li><a href="#">Menu Item 7</a></li>
+          <li><a href="#">Menu Item 8</a></li>
+        </ul>
+
+        <div class="sidebar-section-title">Block</div>
+        <div class="block-content">
+          <p class="enter-block">Enter Block content here...</p>
+          <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo</p>
+        </div>
+      </aside>
+
+      <!-- MAIN -->
+      <main>
+        <h2>Gallery</h2>
+        <p class="gallery-text">
+          Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean
+          massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam
+          felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo,
+          fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.
+          Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper
+          nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim.
+          Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet.
+          Quisque rutrum. Aenean imperdiet.
+        </p>
+
+        <div class="two-col">
+          <div>
+            <h3>Subscription</h3>
+            <p>
+              Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam
+              rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero,
+              sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit
+              id, lorem. Maecenas nec odio et ant
+            </p>
+            <a href="#" class="btn-read-more">Read more</a>
+          </div>
+          <div>
+            <h3>Other Services</h3>
+            <p>
+              Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam
+              rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero,
+              sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit
+              id, lorem. Maecenas nec odio et ant
+            </p>
+            <a href="#" class="btn-read-more">Read more</a>
+          </div>
+        </div>
+      </main>
+
+    </div><!-- /.content-area -->
+
+    <!-- FOOTER -->
+    <footer>
+      Copyright &copy; 2014.
+    </footer>
+
+  </div><!-- /.page-wrapper -->
+
+</body>
+</html>
